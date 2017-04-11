@@ -1,0 +1,54 @@
+# coding: utf-8
+# filename: cfg/logger.yml
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(filename)s - [line:%(lineno)d]'
+  consolefmt:
+    format: '%(name)s - %(levelname)s - %(message)s'
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: consolefmt
+    level   : WARNING
+    stream  : ext://sys.stdout
+  cachehintfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/cachehint.log
+    backupCount: 100
+  commonsfile:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/enter.log
+    backupCount: 100
+  bjkuai3file:
+    class : logging.handlers.TimedRotatingFileHandler
+    formatter: simple
+    when: midnight
+    level   : INFO
+    filename: log/bjkuai3.log
+    backupCount: 100
+  
+loggers:
+  cachehint:
+    level: DEBUG
+    handlers: [console,cachehintfile]
+    propagate: no
+  commonsparser:
+    level: DEBUG
+    handlers: [console, commonsfile]
+    propagate: no
+  bjkuai3:
+    level: DEBUG
+    handlers: [console, bjkuai3file]
+    propagate: no
+ 
+  
+root:
+  level: DEBUG
+  handlers: [console,commonsfile]

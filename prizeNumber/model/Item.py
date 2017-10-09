@@ -6,7 +6,7 @@ Created on 2017年4月6日
 
 
 class PrizeNumberItem():
-    def __init__(self, pdate='', issue='', numbers='', name='', ptime='', _code='', source='', update_time='',job_name='',status=''):
+    def __init__(self, pdate='', issue='', numbers='',priority='', name='', ptime='', _code='', source='', update_time='',job_name='',status=''):
         self.pdate = pdate
         self.issue = issue
         self.numbers = numbers
@@ -17,6 +17,7 @@ class PrizeNumberItem():
         self.name = name
         self.job_name=job_name
         self.status=status
+        self.priority=priority
 
     def printContent(self):
         print(self.pdate )

@@ -19,10 +19,12 @@ def execute(model_name=''):
 
 
 if __name__ == "__main__":
+    
 
     while(True):
 
         #execute('guanxi11_5')
         for job in  configureRead.get_section():
+           
             execute(job)
         time.sleep(int(configureRead.getCommonValue('concurrent', 'sleepTimeInMainThread')))

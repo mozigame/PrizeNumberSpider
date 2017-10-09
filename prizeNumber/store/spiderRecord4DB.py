@@ -21,10 +21,10 @@ def getCurrentPrizeNumberFromDB(jobName):
 def batchInsert(items):
     
     db = MySQLDB()
-    sql='insert into PrizeNumberItem(pdate,issue,numbers,ptime,source,update_time,code,name,job_name,status) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+    sql='insert into PrizeNumberItem(pdate,issue,numbers,ptime,source,update_time,code,name,job_name,status,priority) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
     tmpItem=[]
     for e in items:
-        tmpItem.append((e.pdate,e.issue,e.numbers,e.ptime,e.source,e.update_time,e.code,e.name,e.job_name,e.status))
+        tmpItem.append((e.pdate,e.issue,e.numbers,e.ptime,e.source,e.update_time,e.code,e.name,e.job_name,e.status,e.priority))
     db.batchInsert(sql,tmpItem)
     db.close()
 

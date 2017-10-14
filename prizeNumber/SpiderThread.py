@@ -12,6 +12,7 @@ import time
 
 from store import spiderRecord4DB
 from utils import configureRead
+from notice.prizeNotice import *
 import sys
 
 class SpiderThread(Thread):
@@ -23,12 +24,19 @@ class SpiderThread(Thread):
             while(True):
                 
                 current_prize_number=spiderRecord4DB.getCurrentPrizeNumberFromDB(self.name)
+               
+                
                 fp, pathname, description = imp.find_module('work',['./game/'+self.name])
                 try:
                     m = imp.load_module(self.name+"_work", fp, pathname, description)
                     items=m.handler(self.name,current_prize_number)
                     if(len(items)>0):
                         spiderRecord4DB.batchInsert(items)
+                        spiderRecord4DB.batchUpdate(items)
+                        
+                    
+                        notice = prizeNotice('prize_notice_server')
+                        notice.notice_to_draw_server(items)  
                 finally:
                     if fp:
                         fp.close()

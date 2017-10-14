@@ -15,14 +15,16 @@ class MySQLDB():
     _cur = None
     _TIMEOUT = 30
     _timecount = 0
+    
 
-    def __init__(self):
-        host_value=configureRead.getDBValue('mysql', 'db_host')
-        port_value=int(configureRead.getDBValue('mysql', 'db_port'))
-        db_name_value=configureRead.getDBValue('mysql', 'db_name')
-        user_value=configureRead.getDBValue('mysql', 'db_user')
-        pass_value=configureRead.getDBValue('mysql', 'db_pass')
-        charsetValue=configureRead.getDBValue('mysql', 'db_charset')
+    def __init__(self,db_name):
+        self.db_name=db_name
+        host_value=configureRead.getDBValue(self.db_name, 'db_host')
+        port_value=int(configureRead.getDBValue(self.db_name, 'db_port'))
+        db_name_value=configureRead.getDBValue(self.db_name, 'db_name')
+        user_value=configureRead.getDBValue(self.db_name, 'db_user')
+        pass_value=configureRead.getDBValue(self.db_name, 'db_pass')
+        charsetValue=configureRead.getDBValue(self.db_name, 'db_charset')
         self._conn = pymysql.connect(host=host_value,
                                      port=port_value,
                                      user=user_value,

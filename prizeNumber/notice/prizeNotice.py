@@ -29,8 +29,8 @@ class prizeNotice():
             self._notice_to_draw_server(item)
             
     def _notice_to_draw_server(self,item):
-        server_url=self.url+"?code="+item.code+"&&pcode="+item.issue
-        res=requests.get(url=server_url,headers=headers,timeout=300)
-        
+        server_url=self.url+"?code="+item.code+"&&issueAlias="+item.issue
+        res=requests.post(url=server_url,headers=headers,timeout=300)
+        print(res.text)
         
         
